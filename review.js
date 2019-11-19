@@ -125,3 +125,29 @@ const reverse = (num) => {
 
 console.log(reverse(34532) === 23543);
 console.log(reverse(-34.532));
+
+/**
+ * 
+ * **6. Cubed.**
+Create a function that takes in an array of numbers and returns the sum of its cubes. 
+
+Examples: 
+* sumOfCubes([1, 5, 9]) ➞ 855 // Since 1^3 + 5^3 + 9^3 = 1 + 125 + 729 = 855
+* sumOfCubes([2]) ➞ 8
+* sumOfCubes([]) ➞ 0
+ */
+
+const sumOfCubes = (numArr) => {
+  let sum = 0;
+
+  //Magic
+  for (let num of numArr) {
+    sum += num ** 3;
+  }
+
+  return sum;
+};
+
+console.log(sumOfCubes([1, 5, 9]) === 855);
+console.log(sumOfCubes([2]) === 8);
+console.log(sumOfCubes([]) === 0);
