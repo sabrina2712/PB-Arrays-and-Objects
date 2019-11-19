@@ -137,12 +137,12 @@ Examples:
 * sumOfCubes([]) ➞ 0
  */
 
-const sumOfCubes = (numArr) => {
+const sumOfCubes = (numArr = []) => {
   let sum = 0;
 
   //Magic
   for (let num of numArr) {
-    sum += num ** 3;
+    sum += num ** 3; // Math.pow(num,3)
   }
 
   return sum;
@@ -151,3 +151,75 @@ const sumOfCubes = (numArr) => {
 console.log(sumOfCubes([1, 5, 9]) === 855);
 console.log(sumOfCubes([2]) === 8);
 console.log(sumOfCubes([]) === 0);
+
+/**
+ * 
+**7. Dictionary.**
+Create a function that takes an initial string and an array of words, and returns a filtered array of the words that start with the same letters as the initial string.
+
+Notes:
+* If none of the words match, return an empty array.
+* Keep the filtered array in the same relative order as the original array of words.
+*/
+
+const dictionary = (searchString, dic) => {
+  const matched = [];
+  for (let word of dic) {
+    if (word.startsWith(searchString)) {
+      matched.push(word);
+    }
+  }
+
+  return matched;
+};
+
+console.log(dictionary("bu", ["button", "breakfast", "border"]));
+console.log(dictionary("tri", ["triplet", "tries", "trip", "piano", "tree"]));
+console.log(dictionary("beau", ["pastry", "delicious", "name", "boring"]));
+
+/** 
+**8. Even Number Generator.**
+Create a function that finds all even numbers from 1 to the given number.
+
+Examples:
+* evenNums(8) ➞ [2, 4, 6, 8]
+* evenNums(4) ➞ [2, 4]
+* evenNums(2) ➞ [2]
+**Notes:** 
+* If there are no even numbers, return an empty array. 
+* Do not include 0. 
+
+ */
+const evenNums = (num) => {
+  const numbers = [];
+
+  for (let i = 2; i <= num; i = i + 2) {
+    numbers.push(i);
+  }
+
+  return numbers;
+};
+
+console.log(evenNums(8));
+console.log(evenNums(4));
+console.log(evenNums(2));
+
+/**
+ * **Bonus: Alphabetical Order.**
+Create a function to sort a string into alphabetical order. **NB:** assume numbers, symbols and punctuation are not included in the string.
+
+i.e. alphaOrder("webdev") ➞ "bdeevw" 
+ */
+const alphaOrder = (word) => {
+  // const charArray = word.split("");
+  // const sortedArray = charArray.sort();
+  // const sortedWord = sortedArray.join("");
+  // return sortedWord;
+
+  return word
+    .split("")
+    .sort()
+    .join("");
+};
+
+console.log(alphaOrder("webdev") === "bdeevw");
