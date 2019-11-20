@@ -380,3 +380,58 @@ function unique(arrayUnique) {
 console.log(unique([3, 3, 3, 7, 3, 3]) === 7);
 console.log(unique([0, 0, 0.77, 0, 0]) === 0.77);
 console.log(unique([0, 1, 1, 1, 1, 1, 1, 1]) === 0);
+
+/**
+ * **5. Word Ranking.**
+Create a function that takes a string of words and returns the highest scoring word. Each letter of a word scores points according to it's position in the alphabet: a = 1, b = 2, c = 3, etc.
+* The returned string should only contain alphabetic characters (a-z).
+* Preserve case in the returned string (see 4th example below).
+
+Examples:
+* wordRank("The quick brown fox.") ➞ "brown"
+* wordRank("Nancy is very pretty.") ➞ "pretty"
+* wordRank("Check back tomorrow, man!") ➞ "tomorrow"
+* wordRank("Today is Wednesday.") ➞ "Wednesday"
+ */
+
+const sumOfArray = function(accumulator, currentValue, index, array) {
+  return accumulator + currentValue;
+};
+
+const scoreWord = (word) => {
+  debugger;
+  const arrOfChar = word.split("");
+  //score for each character
+  const scores = arrOfChar.map((char) => {
+    return char.toLowerCase().charCodeAt(0) - 96;
+  });
+
+  const sum = scores.reduce(sumOfArray, 0);
+
+  return sum;
+};
+
+// console.log(scoreWord("a") === 1);
+// console.log(scoreWord("A") === 1);
+// console.log(scoreWord("b") === 2);
+// console.log(scoreWord("aB") === 3);
+
+const wordRank = (string) => {
+  let winningWord;
+  // We want words!
+  const words = string.split(" ");
+  // We need to score words
+  const wordScores = words.map(scoreWord);
+  // We need a winner
+  const highestScore = Math.max(...wordScores);
+  const indexOfWinner = wordScores.indexOf(highestScore);
+
+  winningWord = words[indexOfWinner];
+
+  return winningWord;
+};
+
+console.log(wordRank("The quick brown fox") === "brown");
+console.log(wordRank("Nancy is very pretty") === "pretty");
+console.log(wordRank("Check back tomorrow man") === "tomorrow");
+console.log(wordRank("Today is Wednesday") === "Wednesday");
