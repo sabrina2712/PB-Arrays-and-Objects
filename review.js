@@ -349,3 +349,34 @@ const amplify = (number) => {
 console.log(amplify(4));
 console.log(amplify(3));
 console.log(amplify(25));
+
+/**
+ * **4. One is not like the others...**
+Create a function that takes an array of numbers and return the number that's unique.
+
+Examples:
+* unique([3, 3, 3, 7, 3, 3]) ➞ 7
+* unique([0, 0, 0.77, 0, 0]) ➞ 0.77
+* unique([0, 1, 1, 1, 1, 1, 1, 1]) ➞ 0
+ */
+
+// const unique = (numberArr) => {
+//   // Loop
+//   // We want to keep track on numbers occurrence
+// };
+
+function unique(arrayUnique) {
+  for (let i = 0; i < arrayUnique.length; i++) {
+    const currentElement = arrayUnique[i];
+    if (
+      arrayUnique.indexOf(currentElement) ===
+      arrayUnique.lastIndexOf(currentElement)
+    ) {
+      return currentElement;
+    }
+  }
+}
+
+console.log(unique([3, 3, 3, 7, 3, 3]) === 7);
+console.log(unique([0, 0, 0.77, 0, 0]) === 0.77);
+console.log(unique([0, 1, 1, 1, 1, 1, 1, 1]) === 0);
