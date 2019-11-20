@@ -294,7 +294,6 @@ Examples:
  */
 
 const monthName = (numberOfMonth) => {
-  debugger;
   numberOfMonth = numberOfMonth - 1;
   const monthOfYear = [
     "January",
@@ -317,3 +316,122 @@ const monthName = (numberOfMonth) => {
 console.log(monthName(3) === "March");
 console.log(monthName(12) === "December");
 console.log(monthName(6) === "June");
+
+/**
+ * **3. Amplify the Multiples of 4.**
+Create a function that takes an integer and returns an array of integers ascending from 1 to the given number, where:
+
+* For each number in the array that can be evenly divided by 4, that number is amplified by 10 (i.e. return 10 times the number).
+* If the number cannot be divided evenly by 4, simply return the number.
+* The given integer will always be equal to or greater than 1.
+* Include the given number (the number in the parameters).
+
+Examples:
+* amplify(4) ➞ [1, 2, 3, 40]
+* amplify(3) ➞ [1, 2, 3]
+* amplify(25) ➞ [1, 2, 3, 40, 5, 6, 7, 80, 9, 10, 11, 120, 13, 14, 15, 160, 17, 18, 19, 200, 21, 22, 23, 240, 25]
+ */
+
+const amplify = (number) => {
+  const amplified = [];
+
+  for (let i = 1; i <= number; i++) {
+    let element = i;
+    if (i % 4 === 0) {
+      element = element * 10;
+    }
+    amplified.push(element);
+  }
+
+  return amplified;
+};
+
+console.log(amplify(4));
+console.log(amplify(3));
+console.log(amplify(25));
+
+/**
+ * **4. One is not like the others...**
+Create a function that takes an array of numbers and return the number that's unique.
+
+Examples:
+* unique([3, 3, 3, 7, 3, 3]) ➞ 7
+* unique([0, 0, 0.77, 0, 0]) ➞ 0.77
+* unique([0, 1, 1, 1, 1, 1, 1, 1]) ➞ 0
+ */
+
+// const unique = (numberArr) => {
+//   // Loop
+//   // We want to keep track on numbers occurrence
+// };
+
+function unique(arrayUnique) {
+  for (let i = 0; i < arrayUnique.length; i++) {
+    const currentElement = arrayUnique[i];
+    if (
+      arrayUnique.indexOf(currentElement) ===
+      arrayUnique.lastIndexOf(currentElement)
+    ) {
+      return currentElement;
+    }
+  }
+}
+
+console.log(unique([3, 3, 3, 7, 3, 3]) === 7);
+console.log(unique([0, 0, 0.77, 0, 0]) === 0.77);
+console.log(unique([0, 1, 1, 1, 1, 1, 1, 1]) === 0);
+
+/**
+ * **5. Word Ranking.**
+Create a function that takes a string of words and returns the highest scoring word. Each letter of a word scores points according to it's position in the alphabet: a = 1, b = 2, c = 3, etc.
+* The returned string should only contain alphabetic characters (a-z).
+* Preserve case in the returned string (see 4th example below).
+
+Examples:
+* wordRank("The quick brown fox.") ➞ "brown"
+* wordRank("Nancy is very pretty.") ➞ "pretty"
+* wordRank("Check back tomorrow, man!") ➞ "tomorrow"
+* wordRank("Today is Wednesday.") ➞ "Wednesday"
+ */
+
+const sumOfArray = function(accumulator, currentValue, index, array) {
+  return accumulator + currentValue;
+};
+
+const scoreWord = (word) => {
+  debugger;
+  const arrOfChar = word.split("");
+  //score for each character
+  const scores = arrOfChar.map((char) => {
+    return char.toLowerCase().charCodeAt(0) - 96;
+  });
+
+  const sum = scores.reduce(sumOfArray, 0);
+
+  return sum;
+};
+
+// console.log(scoreWord("a") === 1);
+// console.log(scoreWord("A") === 1);
+// console.log(scoreWord("b") === 2);
+// console.log(scoreWord("aB") === 3);
+
+const wordRank = (string) => {
+  let winningWord;
+  // We want words!
+  const words = string.split(" ");
+  // We need to score words
+  const wordScores = words.map(scoreWord);
+  // We need a winner
+  const highestScore = Math.max(...wordScores);
+  const indexOfWinner = wordScores.indexOf(highestScore);
+
+  winningWord = words[indexOfWinner];
+
+  return winningWord;
+};
+
+console.log(wordRank("The quick brown fox") === "brown");
+console.log(wordRank("Nancy is very pretty") === "pretty");
+console.log(wordRank("Check back tomorrow man") === "tomorrow");
+console.log(wordRank("Today is Wednesday") === "Wednesday");
