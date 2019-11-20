@@ -223,3 +223,97 @@ const alphaOrder = (word) => {
 };
 
 console.log(alphaOrder("webdev") === "bdeevw");
+
+// Exercise 4
+
+/**
+ * **1. Where Have My Four Letter Words Gone?**
+Create a function that takes an array of strings. Return all words in the array that are exactly four letters.
+
+Examples:
+ 
+* isFourLetters(["John", "James", "Jack", "Jeanne"]) ➞ ["John", "Jack"] 
+* isFourLetters(["Tomato", "Corn", "Lettuce"]) ➞ ["Corn"]
+* isFourLetters(["Dog", "Cat", "Deer"]) ➞ ["Deer"]
+ */
+
+const isXLetters = (arrayOfWords, number = 4) => {
+  const fourLetterWords = [];
+  // loop over array
+  // for (let i = 0; i < arrayOfWords.length; i++) {
+  //   let word = arrayOfWords[i];
+  //   // word (strings got lengths)!
+  //   if (word.length === 4) {
+  //     fourLetterWords.push(word);
+  //   }
+  // }
+  for (let word of arrayOfWords) {
+    // word (strings got lengths)!
+    if (word.length === number) {
+      fourLetterWords.push(word);
+    }
+  }
+
+  return fourLetterWords;
+};
+let words = ["John", "James", "Jack", "Jeanne"];
+console.log(isXLetters(words));
+console.log(isXLetters(["Tomato", "Corn", "Lettuce"]));
+console.log(isXLetters(["Dog", "Cat", "Deer"], 3));
+
+// Default parameter example
+
+const greeting = (name = "") => {
+  console.log("Hello " + name);
+};
+
+greeting();
+greeting("Oliver");
+
+// When no default parameter
+const helloUser = (name, age, birthplace) => {
+  if (!age) {
+    return console.log(`Hello ${name} you are born in ${birthplace}`);
+  }
+  console.log(
+    `Hello ${name} you are ${age} years old and you are born in ${birthplace}`
+  );
+};
+
+helloUser("Jenna", 20, "London");
+helloUser("Peter", null, "London");
+
+/**
+ * **2. Months.**
+Create a function that takes a number (from 1 to 12) and return its corresponding month name as a string.
+
+Examples:
+* monthName(3) ➞ "March"
+* monthName(12) ➞ "December"
+* monthName(6) ➞ "June"
+ */
+
+const monthName = (numberOfMonth) => {
+  debugger;
+  numberOfMonth = numberOfMonth - 1;
+  const monthOfYear = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+
+  return monthOfYear[numberOfMonth];
+};
+
+console.log(monthName(3) === "March");
+console.log(monthName(12) === "December");
+console.log(monthName(6) === "June");
