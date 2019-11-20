@@ -282,3 +282,38 @@ const helloUser = (name, age, birthplace) => {
 
 helloUser("Jenna", 20, "London");
 helloUser("Peter", null, "London");
+
+/**
+ * **2. Months.**
+Create a function that takes a number (from 1 to 12) and return its corresponding month name as a string.
+
+Examples:
+* monthName(3) ➞ "March"
+* monthName(12) ➞ "December"
+* monthName(6) ➞ "June"
+ */
+
+const monthName = (numberOfMonth) => {
+  debugger;
+  numberOfMonth = numberOfMonth - 1;
+  const monthOfYear = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+
+  return monthOfYear[numberOfMonth];
+};
+
+console.log(monthName(3) === "March");
+console.log(monthName(12) === "December");
+console.log(monthName(6) === "June");
