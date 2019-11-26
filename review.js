@@ -32,7 +32,7 @@ console.log(longestWord("this is a web development course") === "development");
   i.e. findVowels("this is a string") ➞ 4
  */
 
-const findVowels = (sentence) => {
+const findVowels = sentence => {
   let vowelsCount = 0;
   const vowels = ["a", "e", "i", "o", "u"];
 
@@ -86,7 +86,7 @@ const sortNumber = (a, b) => {
 //   return missingNumber;
 // };
 
-const missingNums = (arrayOfNums) => {
+const missingNums = arrayOfNums => {
   let missingNumber = 10;
   arrayOfNums = arrayOfNums.sort(sortNumber);
 
@@ -113,7 +113,7 @@ Create a function to reverse a number.
 i.e. reverse(34532) ➞ 23543
  */
 
-const reverse = (num) => {
+const reverse = num => {
   const reverseNumberString = num
     .toString()
     .split("")
@@ -190,7 +190,7 @@ Examples:
 * Do not include 0. 
 
  */
-const evenNums = (num) => {
+const evenNums = num => {
   const numbers = [];
 
   for (let i = 2; i <= num; i = i + 2) {
@@ -210,7 +210,7 @@ Create a function to sort a string into alphabetical order. **NB:** assume numbe
 
 i.e. alphaOrder("webdev") ➞ "bdeevw" 
  */
-const alphaOrder = (word) => {
+const alphaOrder = word => {
   // const charArray = word.split("");
   // const sortedArray = charArray.sort();
   // const sortedWord = sortedArray.join("");
@@ -293,7 +293,7 @@ Examples:
 * monthName(6) ➞ "June"
  */
 
-const monthName = (numberOfMonth) => {
+const monthName = numberOfMonth => {
   numberOfMonth = numberOfMonth - 1;
   const monthOfYear = [
     "January",
@@ -332,7 +332,7 @@ Examples:
 * amplify(25) ➞ [1, 2, 3, 40, 5, 6, 7, 80, 9, 10, 11, 120, 13, 14, 15, 160, 17, 18, 19, 200, 21, 22, 23, 240, 25]
  */
 
-const amplify = (number) => {
+const amplify = number => {
   const amplified = [];
 
   for (let i = 1; i <= number; i++) {
@@ -383,7 +383,8 @@ console.log(unique([0, 1, 1, 1, 1, 1, 1, 1]) === 0);
 
 /**
  * **5. Word Ranking.**
-Create a function that takes a string of words and returns the highest scoring word. Each letter of a word scores points according to it's position in the alphabet: a = 1, b = 2, c = 3, etc.
+Create a function that takes a string of words and returns the highest scoring word. 
+Each letter of a word scores points according to it's position in the alphabet: a = 1, b = 2, c = 3, etc.
 * The returned string should only contain alphabetic characters (a-z).
 * Preserve case in the returned string (see 4th example below).
 
@@ -398,11 +399,29 @@ const sumOfArray = function(accumulator, currentValue, index, array) {
   return accumulator + currentValue;
 };
 
-const scoreWord = (word) => {
-  debugger;
+const prepareSentence = (
+  sentence,
+  notAllowedCharacters = [".", ",", "!", "@"]
+) => {
+  const characters = sentence.split("");
+
+  const filterCharacters = characters.filter(char => {
+    if (notAllowedCharacters.includes(char)) {
+      return false;
+    }
+
+    return true;
+  });
+
+  const newSentence = filterCharacters.join("");
+
+  return newSentence;
+};
+
+const scoreWord = word => {
   const arrOfChar = word.split("");
   //score for each character
-  const scores = arrOfChar.map((char) => {
+  const scores = arrOfChar.map(char => {
     return char.toLowerCase().charCodeAt(0) - 96;
   });
 
@@ -416,12 +435,17 @@ const scoreWord = (word) => {
 // console.log(scoreWord("b") === 2);
 // console.log(scoreWord("aB") === 3);
 
-const wordRank = (string) => {
+const wordRank = string => {
   let winningWord;
+
+  // Prepare sentence (remove non alphabetical characters)
+  string = prepareSentence(string, [".", ",", "!", "?", "/", "*"]);
+
   // We want words!
   const words = string.split(" ");
   // We need to score words
   const wordScores = words.map(scoreWord);
+  console.log("Word scores", wordScores);
   // We need a winner
   const highestScore = Math.max(...wordScores);
   const indexOfWinner = wordScores.indexOf(highestScore);
@@ -431,7 +455,7 @@ const wordRank = (string) => {
   return winningWord;
 };
 
-console.log(wordRank("The quick brown fox") === "brown");
-console.log(wordRank("Nancy is very pretty") === "pretty");
-console.log(wordRank("Check back tomorrow man") === "tomorrow");
-console.log(wordRank("Today is Wednesday") === "Wednesday");
+console.log(wordRank("The quick brown fox.") === "brown");
+console.log(wordRank("Nancy is very pretty.") === "pretty");
+console.log(wordRank("Check back tomorrow, man!") === "tomorrow");
+console.log(wordRank("Today is Wednesday.") === "Wednesday");
