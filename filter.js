@@ -13,7 +13,7 @@
 
 //   console.log(newSentence.join(""));
 
-//   return newSentence;
+//   return newSentence.join("");
 // };
 
 // Long form with filter
