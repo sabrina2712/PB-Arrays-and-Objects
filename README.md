@@ -1,5 +1,9 @@
 # PB-Arrays-and-Objects
 
+> Master branch represents our live coding
+>
+> For all solutions checkout the [solution branch](https://github.com/dci-ber-fbw21/PB-Arrays-and-Objects/tree/solution)
+
 This repository contains multiple `ExerciseN.md` files make sure to work on them in their numeric order.
 You will realize that for some tasks you will need to google and be creative.
 
